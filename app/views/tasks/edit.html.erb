@@ -1,0 +1,10 @@
+<div class="max-w-full h-full mx-auto pt-20 px-7 bg-gray-100 border border-gray-300 relative">
+  <div class="absolute top-0 left-0 w-full px-7 py-6 bg-gray-100 flex items-center">
+    <a href="<%= tasks_path %>" class="text-black mr-4">
+      <i class="fa-solid fa-angle-left fa-lg"></i>
+    </a>
+    <h2 class="text-2xl font-bold text-black">Edit Task</h2>
+  </div>
+
+  <%= render 'form', task: @task %>
+</div>

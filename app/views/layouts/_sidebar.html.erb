@@ -1,0 +1,30 @@
+<nav class="w-72 mini-h-screen flex flex-col py-4" style="background-color: gray;">
+  <div class="mb-4 flex justify-center">
+    <%= image_tag('logo.jpg', alt: "Logo", height: '80px', width: '80px') %>
+  </div>
+
+  <div class="space-y-2 w-full flex-1 text-white">
+    <ul class="space-y-2">
+      <li>
+        <%= link_to authenticated_user_root_path, class: "flex items-center w-full px-4 py-2 sidebar-item #{current_page?(authenticated_user_root_path) ? 'selected' : ''}" do %>
+          <i class="fas fa-home" style="font-size: 1.5rem;"></i>
+          <span class="ml-5">Dashboard</span>
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to categories_path, class: "flex items-center w-full px-4 py-2 sidebar-item" do %>
+          <i class="fas fa-list-alt" style="font-size: 1.5rem;"></i>
+          <span class="ml-5">Categorization</span>
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to tasks_path, class: "flex items-center w-full px-4 py-2 sidebar-item" do %>
+          <i class="fas fa-tasks" style="font-size: 1.5rem;"></i>
+          <span class="ml-5">Tasks</span>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</nav>

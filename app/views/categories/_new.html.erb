@@ -1,0 +1,19 @@
+<div id="addCategoryModal" class="hidden fixed inset-0 z-50" data-modal-target="modal">
+  <div class="fixed inset-0 bg-black opacity-50" aria-hidden="true"></div>
+  <div class="fixed inset-0 backdrop-blur-sm" aria-hidden="true"></div>
+  
+  <div class="relative flex items-center justify-center min-h-screen px-4 text-center">
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-lg mx-auto relative z-10">
+      <div class="border-b p-4 flex justify-between items-center">
+        <h3 class="text-lg font-semibold text-left">Add New Category</h3>
+        <button type="button" class="text-gray-500 hover:text-gray-700 text-3xl" data-action="click->modal#close" aria-label="Close">
+          &times;
+        </button>
+      </div>
+
+      <div class="p-6">
+        <%= render 'form', category: category %>
+      </div>
+    </div>
+  </div>
+</div>

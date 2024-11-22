@@ -1,0 +1,43 @@
+<%= turbo_stream.replace "task_row_#{@task.id}" do %>
+  <tr id="task_row_<%= @task.id %>">
+    <td class="px-6 py-3 whitespace-nowrap text-sm text-gray-800"><%= @task.title %></td>
+    <td class="px-6 py-3 whitespace-nowrap text-sm text-gray-800"><%= @task.status.titleize %></td>
+    <td class="px-6 py-3 whitespace-nowrap text-sm text-gray-800"><%= @task.due_date.strftime("%d %b %Y") %></td>
+    <td class="px-6 py-3 whitespace-nowrap text-sm text-gray-800"><%= @task.category.name %></td>
+    <td class="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
+      <% unless @task.completed? %>
+        <%= button_to "Mark as Completed", mark_as_completed_task_path(@task), method: :patch, class: "text-indigo-600 hover:text-indigo-900", data: { turbo: true } %>
+      <% end %>
+    </td>
+    <td class="px-6 py-3 whitespace-nowrap text-sm text-gray-800">
+      <%= truncate(@task.description, length: 70) %>
+    </td>
+    <td class="px-6 py-3 whitespace-nowrap text-right text-sm relative" data-controller="dropdown">
+      <button class="text-gray-600 hover:text-gray-700" data-action="click->dropdown#toggle">
+        <i class="fa-solid fa-ellipsis fa-2x"></i>
+      </button>
+      <div data-dropdown-target="menu" class="hidden absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg z-50">
+        <ul>
+          <li>
+            <%= link_to task_path(@task), class: "flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full" do %>
+              <i class="fas fa-eye mr-2"></i> View
+            <% end %>
+            </li>
+          <li>
+            <%= link_to edit_task_path(@task), class: "flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full" do %>
+              <i class="fas fa-edit mr-2"></i> Edit
+            <% end %>
+          </li>
+          <li>
+            <div data-controller="modal">
+              <button class="text-gray-700 flex items-center px-4 py-2 text-sm hover:bg-gray-100 w-full" data-action="click->modal#open" data-id="<%= @task.id %>">
+                <i class="fa fa-trash mr-2"></i> Delete
+              </button>
+              <%= render 'shared/delete_modal', record: @task, delete_path: task_path(@task) %>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </td>
+  </tr>
+<%end%>

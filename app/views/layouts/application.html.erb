@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TaskManager</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+  </head>
+
+  <body class="font-sans leading-normal tracking-normal">
+    <div class="min-h-screen flex">
+    
+      <% unless devise_controller? %>
+        <!-- Sidebar -->
+        <%= render 'layouts/sidebar' %>
+      <% end %>
+
+      <div class="flex-1 flex flex-col">
+        <!-- Header -->
+        <% unless devise_controller? %>
+          <%= render 'shared/header' %>
+        <% end %>
+
+        <!-- Main Content -->
+        <main class="flex-1">
+          <div id="flash-messages">
+            <%= flash_messages %>
+          </div>
+          <%= yield %>
+        </main>
+      </div>
+
+    </div>
+  </body>
+</html>

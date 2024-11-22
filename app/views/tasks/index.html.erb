@@ -1,0 +1,20 @@
+<div class="max-w-full h-full mx-auto pt-20 pb-10 px-7 bg-gray-100 border border-gray-300 h-full relative overflow-hidden">
+  <div class="absolute top-0 left-0 w-full px-7 py-5 bg-gray-100 flex justify-between items-center">
+    <h2 class="text-2xl font-bold text-black">Tasks</h2>
+    <div data-controller="modal">
+      <div class="flex justify-end">
+        <%= link_to "+ Create", new_task_path, type: "button", class: "text-lg px-5 py-2 bg-blue-800 text-white font-medium rounded-md hover:bg-blue-700" %>
+      </div>
+ 
+    </div>
+  </div>
+
+  <div class="bg-white p-6 rounded pt-6 h-full flex flex-col">
+  
+    <%= render partial: "filters" %>
+    <div id="search-results" class="flex-grow">
+      <%= render partial: "table", locals: { tasks: @tasks } %>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<%= form_with model: task, url: task.persisted? ? task_path(task) : tasks_path, method: task.persisted? ? :put : :post do |f| %>
+  <div class="p-8 bg-white">
+    <div class="pb-4 mb-4"> 
+      <h3 class="text-lg font-semibold text-blue-800 mb-4">Task Details</h3>
+
+      <div class="grid grid-cols-2 gap-6 gap-x-32">
+        <div>
+          <%= f.label :category_id, "Category", class: "font-semibold block text-base text-black" %>
+          <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: "Select Category" }, class: "mt-1 block w-full border border-gray-300 rounded-md p-2 focus:border-blue-500 focus:ring focus:ring-blue-200" %>
+        </div>
+
+        <div>
+          <%= f.label :title, "Name*", class: "font-semibold block text-base text-black" %>
+          <%= f.text_field :title, placeholder: "Name", class: "mt-1 block w-full border border-gray-300 rounded-md p-2 focus:border-blue-500 focus:ring focus:ring-blue-200" %>
+        </div>
+
+        <div>
+          <%= f.label :status, "Status", class: "font-semibold block text-base text-black" %>
+          <%= f.select :status, options_for_select(Task.statuses.keys.map { |status| [status.humanize, status] }, f.object.status),{}, class: "mt-1 block w-full border border-gray-300 rounded-md p-2 focus:border-blue-500 focus:ring focus:ring-blue-200" %>
+        </div>
+
+        <div>
+          <%= f.label :due_date, "Due Date*", class: "font-semibold block text-base text-black" %>
+          <div class="relative">
+            <%= f.date_field :due_date, placeholder: "Select Date", class: "mt-1 block w-full border border-gray-300 rounded-md p-2 focus:border-blue-500 focus:ring focus:ring-blue-200" %>
+          </div>
+        </div>
+
+        <div class="col-span-2">
+          <%= f.label :description, "Description", class: "font-semibold block text-base text-black" %>
+          <%= f.text_area :description, placeholder: "Write here", rows: 4, class: "mt-1 block w-full border border-gray-300 rounded-md p-2 focus:border-blue-500 focus:ring focus:ring-blue-200" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full py-7 flex justify-end bg-gray-100">
+    <%= link_to "Cancel", tasks_path, class: "px-5 py-2 text-blue-800 border border-blue-600 rounded-md font-medium text-lg" %>
+    <%= f.submit "Save", class: "ml-3 px-5 py-2 bg-blue-800 text-white rounded-md cursor-pointer font-medium text-lg" %>
+  </div>
+<% end %>

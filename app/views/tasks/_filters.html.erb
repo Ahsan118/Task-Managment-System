@@ -1,0 +1,44 @@
+<%= form_with url: tasks_path, method: :get, local: false do %>
+  <div class="flex flex-col mb-6" data-controller="search" data-action="submit->search#performSearch">
+
+    <!-- name filter -->
+    <div class="relative flex-grow mb-4">
+      <input type="text" name="keyword" placeholder="Search" value="<%= params[:keyword] %>" 
+             class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent w-96"
+             data-action="input->search#performSearch" />
+      <i class="fas fa-search absolute left-3 top-3 text-gray-500"></i>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <div class="flex items-center">
+
+        <!-- Category filter -->
+        <div class="mt-1 relative mr-4">
+          <%= select_tag :category_id, options_for_select(Category.pluck(:name, :id), params[:category_id]), 
+             include_blank: "Category", 
+             class: "block w-44 border border-gray-300 rounded-md bg-gray-50 text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent",
+             data: { action: "change->search#performSearch" } %>
+        </div>
+
+        <!-- Status filter -->
+        <div class="mt-1 relative mr-4">
+          <%= select_tag :status, options_for_select(Task.statuses.keys.map { |status| [status.humanize, status] }, params[:status]), 
+             include_blank: "Status", 
+             class: "block w-44 border border-gray-300 rounded-md bg-gray-50 text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent",
+             data: { action: "change->search#performSearch" } %>
+        </div>
+
+        <!-- Date Range Picker -->
+        <div class="mt-1 relative mr-4" data-controller="daterangepicker">
+          <input type="text" name="date_range" value="<%= params[:date_range] %>" 
+                 data-daterangepicker-target="daterange" 
+                 class="block w-64 border border-gray-300 rounded-md bg-gray-50 text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" 
+                 placeholder="Select a date range"
+                 data-action="change->search#performSearch" />
+        </div>
+
+      </div>
+      <%= link_to "Clear All Filters", tasks_path, class: "text-blue-500 border border-blue-500 rounded-md px-4 py-2 inline-block" %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,13 @@
+<%= form_with model: category, url: category.persisted? ? category_path(category) : categories_path, method: category.persisted? ? :put : :post do |f| %>
+  <div class="mb-4">
+    <label for="category_name" class="block text-md font-semibold text-black text-left">Category Name*</label>
+    <%= f.text_field :name, id: "category_name", class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200", placeholder: "Enter category name" %>
+  </div>
+
+  <div class="border-t my-4"></div>
+  
+  <div class="flex justify-between items-center space-x-4">
+    <button type="button" class="w-full px-6 py-2 font-semibold bg-white text-blue-800 border border-blue-800 rounded-md" data-action="click->modal#close">Cancel</button>
+    <button type="submit" class="w-full px-6 py-2 font-semibold bg-blue-800 text-white rounded-md hover:bg-blue-700">Confirm</button>
+  </div>
+<% end %>

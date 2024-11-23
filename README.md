@@ -18,6 +18,10 @@ The **Task Manager App** allows users to manage their tasks efficiently. Users c
 - **Capybara**: Used for writing and running feature specs for testing.
 - **RSpec**: Used for unit and feature testing.
 - **PgSearch**: For implementing full-text search functionality.
+- **Pundit**: For implementing authorization and controlling user access to tasks, ensuring that only the task owner can edit or delete the task.
+- **Faker**: For generating fake data, useful for seeding the database with realistic test data.
+- **Selenium**: For running JavaScript-driven browser tests, simulating real user behavior to ensure that everything works smoothly.
+
 - **Tailwind CSS**: For styling the user interface.
 
 ## Installation

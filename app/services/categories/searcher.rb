@@ -12,7 +12,7 @@ module Categories
     end
 
     def call
-      @categories = Category.order(updated_at: :desc)
+      @categories = Category.with_user.for_user(current_user).order(updated_at: :desc)
       @categories = @categories.search_by_keyword(keyword) if keyword.present?
       @categories
     end
@@ -21,6 +21,10 @@ module Categories
 
     def keyword
       @opts[:keyword]
+    end
+
+    def current_user
+      @opts[:current_user]
     end
   end
 end

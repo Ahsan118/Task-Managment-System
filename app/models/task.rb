@@ -4,7 +4,7 @@ class Task < ApplicationRecord
   belongs_to :user
 
   validates :title, :due_date, presence: true
-  validates_comparison_of :due_date, greater_than_or_equal_to: -> { Date.today }
+  validates_comparison_of :due_date, greater_than_or_equal_to: -> { Date.today }, message: "must be greater than or equal to today"
 
   scope :with_user_and_category, -> { joins(:user, :category) }
   scope :for_user, ->(user) { where(user: user) }

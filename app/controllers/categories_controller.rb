@@ -12,9 +12,9 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new(category_params)
+    @category = current_user.categories.new(category_params)
     if @category.save
-      flash[:success] = "category created successfully"
+      flash[:success] = "Category created successfully"
       redirect_to categories_path
     else
       handle_error(@category)
@@ -22,8 +22,9 @@ class CategoriesController < ApplicationController
   end
 
   def update
+    authorize @category
     if @category.update(category_params)
-      flash[:success] = "category updated successfully"
+      flash[:success] = "Category updated successfully"
       redirect_to categories_path
     else
       handle_error(@category)
@@ -31,8 +32,9 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
+    authorize @category
     if @category.destroy
-      flash[:success] = "category deleted successfully"
+      flash[:success] = "Category deleted successfully"
       redirect_to categories_path
     else
       handle_error(@category)
@@ -50,7 +52,7 @@ class CategoriesController < ApplicationController
   end
 
   def search_params
-    params.permit(:keyword)
+    params.permit(:keyword).merge(current_user: current_user)
   end
 
   def allow_destroy?

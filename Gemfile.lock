@@ -127,6 +127,8 @@ GEM
     factory_bot_rails (6.4.4)
       factory_bot (~> 6.5)
       railties (>= 5.0.0)
+    faker (3.5.1)
+      i18n (>= 1.8.11, < 2)
     ffi (1.17.0-aarch64-linux-gnu)
     ffi (1.17.0-arm-linux-gnu)
     ffi (1.17.0-arm64-darwin)
@@ -203,6 +205,8 @@ GEM
     public_suffix (6.0.1)
     puma (6.4.3)
       nio4r (~> 2.0)
+    pundit (2.4.0)
+      activesupport (>= 3.0.0)
     racc (1.8.1)
     rack (3.1.8)
     rack-session (2.0.0)
@@ -309,6 +313,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    shoulda-matchers (5.3.0)
+      activesupport (>= 5.2.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -344,6 +350,10 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
+    webdrivers (5.2.0)
+      nokogiri (~> 1.6)
+      rubyzip (>= 1.3.0)
+      selenium-webdriver (~> 4.0)
     websocket (1.2.11)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
@@ -368,12 +378,14 @@ DEPENDENCIES
   devise
   dotenv-rails
   factory_bot_rails
+  faker
   font-awesome-sass (~> 6.5.2)
   importmap-rails
   jbuilder
   pg (~> 1.1)
   pg_search
   puma (>= 5.0)
+  pundit
   rails (~> 7.1.4)
   rspec-rails (~> 5.0)
   rubocop
@@ -382,12 +394,14 @@ DEPENDENCIES
   rubocop-rspec
   sass-rails
   selenium-webdriver
+  shoulda-matchers (~> 5.0)
   sprockets-rails
   stimulus-rails
   tailwindcss-rails
   turbo-rails
   tzinfo-data
   web-console
+  webdrivers
 
 RUBY VERSION
    ruby 3.2.2p53

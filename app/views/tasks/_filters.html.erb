@@ -14,7 +14,7 @@
 
         <!-- Category filter -->
         <div class="mt-1 relative mr-4">
-          <%= select_tag :category_id, options_for_select(Category.pluck(:name, :id), params[:category_id]), 
+          <%= select_tag :category_id, options_for_select(current_user.categories.pluck(:name, :id), params[:category_id]), 
              include_blank: "Category", 
              class: "block w-44 border border-gray-300 rounded-md bg-gray-50 text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent",
              data: { action: "change->search#performSearch" } %>

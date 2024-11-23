@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
+  include Pundit::Authorization
   before_action :authenticate_user!
-  
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   private
   
   def handle_error(resource)
@@ -12,5 +14,10 @@ class ApplicationController < ActionController::Base
         ]
       end
     end
+  end
+
+  def user_not_authorized
+    flash[:error] = 'You are not authorized to perform this action.'
+    redirect_to authenticated_user_root_path
   end
 end
